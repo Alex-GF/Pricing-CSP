@@ -1,17 +1,29 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",  // Usar el depurador de Node.js en VSCode para Deno
-            "request": "launch",
-            "name": "Test pricing model without addons",
-            "runtimeExecutable": "minizinc",
-            "runtimeArgs": [
-              "model/PricingModelNoAddons.mzn",
-              "data/pricing_data_without_addons.dzn"
-            ],
-            "cwd": "${workspaceFolder}/minizinc",  // Asegúrate de que sea el directorio raíz del proyecto
-            "outputCapture": "std"  // Captura de la salida estándar
-          }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node", // Usar el depurador de Node.js en VSCode para Deno
+      "request": "launch",
+      "name": "Test pricing model without addons",
+      "runtimeExecutable": "minizinc",
+      "runtimeArgs": [
+        "model/PricingModelNoAddons.mzn",
+        "data/pricing_data_without_addons.dzn"
+      ],
+      "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
+      "outputCapture": "std" // Captura de la salida estándar
+    },
+    {
+      "type": "node", // Usar el depurador de Node.js en VSCode para Deno
+      "request": "launch",
+      "name": "Test pricing model with addons",
+      "runtimeExecutable": "minizinc",
+      "runtimeArgs": [
+        "model/PricingModelWithAddons.mzn",
+        "data/pricing_data_with_addons.dzn"
+      ],
+      "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
+      "outputCapture": "std" // Captura de la salida estándar
+    }
+  ]
 }

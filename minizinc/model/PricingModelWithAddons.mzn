@@ -7,12 +7,19 @@ int: unlimited = 1000000000;
 enum PLANS;
 enum FEATURES;
 enum USAGE_LIMITS;
+enum ADDONS;
 
 array[PLANS] of float: plans_prices; % The position i indicates the price of a plan.
-% array[ADD_ONS] of float: addons_prices; % The position i indicates the price of an add-on.
+array[ADDONS] of float: addons_prices; % The position i indicates the price of an add-on.
+
 array[PLANS, FEATURES] of int: plans_features; % The position (i,j) indicates wether the plan i includes the feature j
 array[PLANS, USAGE_LIMITS] of int: plans_usage_limits; % The position (i,j) indicates the value of the usage limit j in the plan i.
+
 array[USAGE_LIMITS, FEATURES] of int: linked_features; % The position (i,j) indicates wether the usageLimit i is linked to the feature j
+
+array[ADDONS, FEATURES] of int: addons_features; % The position (i,j) indicates wether the add-on i includes the feature j
+array[ADDONS, USAGE_LIMITS] of int: addons_usage_limits; % The position (i,j) indicates the value of the usage limit j in the add-on i.
+array[ADDONS, USAGE_LIMITS] of int: addons_usage_limits_extensions; % The position (i,j) indicates the extension of the limit imposed by the usage limit j in the subscription when contracting the add-on i.
 
 % ---------------------
 % ----- VARIABLES -----
@@ -20,9 +27,13 @@ array[USAGE_LIMITS, FEATURES] of int: linked_features; % The position (i,j) indi
 
 array[FEATURES] of var 0..1: subscription_features;
 array[USAGE_LIMITS] of var 0..unlimited: subscription_usage_limits;
+
 var PLANS: selected_plan;
-% array[ADD_ONS] of var 0..1: selected_addons;
-% array[FEATURES] of var 0..1: features_included_in_selected_addons;
+
+array[ADDONS] of var 0..1: selected_addons;
+array[FEATURES] of var 0..1: features_included_in_selected_addons;
+array[USAGE_LIMITS] of var 0..unlimited: usage_limits_included_in_selected_ADDONS;
+
 var float: subscription_cost;
 
 % -----------------------
@@ -55,18 +66,30 @@ constraint assert(forall(i in PLANS, j in FEATURES, k in USAGE_LIMITS)(
 
 % C3: All the features included within the subscription must correspond to a combination of one plan and 0..n add-ons.
 
+constraint forall(a in ADDONS, f in FEATURES)(
+ if selected_addons[a] = 1 then features_included_in_selected_addons[f] = addons_features[a,f] endif
+);
+
+constraint forall(a in ADDONS, u in USAGE_LIMITS)(
+ if selected_addons[a] = 1 then usage_limits_included_in_selected_ADDONS[u] = addons_usage_limits[a,u] + addons_usage_limits_extensions[a,u] endif
+);
+
 constraint forall(f in FEATURES)(
-  subscription_features[f] = plans_features[selected_plan, f]
+  subscription_features[f] = (plans_features[selected_plan, f] == 1 \/ features_included_in_selected_addons[f] == 1)
 );
 
-constraint forall(f in FEATURES, u in USAGE_LIMITS)(
-  subscription_usage_limits[u] = plans_usage_limits[selected_plan, u]
+constraint forall(u in USAGE_LIMITS)(
+  subscription_usage_limits[u] = plans_usage_limits[selected_plan, u] + usage_limits_included_in_selected_ADDONS[u]
 );
-
-%constraint forall(a in ADDONS, f in FEATURES)(
-%  if selected_addons[a] = 1 then %features_included_in_selected_addons[f] = 
-%)
 
 % Calculus of the subscription cost
 
-constraint subscription_cost = plans_prices[selected_plan]; % + sum(a in ADDONS)(selected_addons[a] * addons_prices[a])
+constraint subscription_cost = plans_prices[selected_plan] + sum(a in ADDONS)(selected_addons[a] * addons_prices[a]);
+
+output [
+  "Selected plan = ", show(selected_plan), "\n",
+  "Selected addons = ", show(selected_addons), "\n",
+  "Features included in subscription = ", show(subscription_features), "\n",
+  "Usage Limits included in subscription = ", show(subscription_usage_limits), "\n",
+  "Subscription cost = ", show(subscription_cost)
+];

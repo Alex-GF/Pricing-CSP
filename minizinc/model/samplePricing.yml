@@ -46,7 +46,7 @@ plans:
       limitOfFeature1:
         value: 5
 addOns:
-  feature3AddOn:
+  feature3Addon:
     description: ADDON description
     price: 15.95
     unit: user/month

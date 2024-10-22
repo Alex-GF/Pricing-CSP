@@ -1,0 +1,21 @@
+FEATURES = {feature1, feature2, feature3};
+USAGE_LIMITS = {limitOfFeature1};
+PLANS = {BASIC, PRO};
+
+plans_prices = [0.0,5.0];
+plans_features = array2d(PLANS, FEATURES, [
+    % BASIC
+    1, 0, 0,
+    % PRO
+    1, 1, 0
+]);
+plans_usage_limits = array2d(PLANS, USAGE_LIMITS, [
+    % BASIC
+    2,
+    % PRO
+    5
+]);
+linked_features = array2d(USAGE_LIMITS, FEATURES, [
+    % limitOfFeature1
+    1,0,0
+]);

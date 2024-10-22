@@ -1,0 +1,55 @@
+saasName: Test
+version: "2.0"
+createdAt: 2024-01-15
+currency: EUR
+hasAnnualPayment: false
+features:
+  feature1:
+    description: Feature 1 description
+    valueType: BOOLEAN
+    defaultValue: true
+    type: DOMAIN
+  feature2:
+    description: Feature 2 description
+    valueType: BOOLEAN
+    defaultValue: false
+    type: DOMAIN
+  feature3:
+    description: Feature 3 description
+    valueType: BOOLEAN
+    defaultValue: false
+    type: DOMAIN
+usageLimits:
+  limitOfFeature1:
+    description: ''
+    valueType: NUMERIC
+    defaultValue: 2
+    unit: use/month
+    type: RENEWABLE
+    linkedFeatures:
+    - feature1
+plans:
+  BASIC:
+    description: Basic plan
+    price: 0.0
+    unit: user/month
+    features: null
+    usageLimits: null
+  PRO:
+    description: Advanced plan
+    price: 5.0
+    unit: user/month
+    features:
+      feature2:
+        value: true
+    usageLimits:
+      limitOfFeature1:
+        value: 5
+addOns:
+  feature3AddOn:
+    description: ADDON description
+    price: 15.95
+    unit: user/month
+    features:
+      feature3:
+        value: true

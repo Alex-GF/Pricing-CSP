@@ -20,6 +20,7 @@ array[USAGE_LIMITS, FEATURES] of int: linked_features; % The position (i,j) indi
 array[ADDONS, FEATURES] of int: addons_features; % The position (i,j) indicates wether the add-on i includes the feature j
 array[ADDONS, USAGE_LIMITS] of int: addons_usage_limits; % The position (i,j) indicates the value of the usage limit j in the add-on i.
 array[ADDONS, USAGE_LIMITS] of int: addons_usage_limits_extensions; % The position (i,j) indicates the extension of the limit imposed by the usage limit j in the subscription when contracting the add-on i.
+array[ADDONS, PLANS] of int: addons_available_for; % The position (i,j) indicates whether the add-on i is available for the plan j
 
 % ---------------------
 % ----- VARIABLES -----
@@ -64,7 +65,13 @@ constraint assert(forall(i in PLANS, j in FEATURES, k in USAGE_LIMITS)(
   endif
 ), "Invalid datafile. The value of all usage limits whose linked_features are in a plan must be > 0");
 
-% C3: All the features included within the subscription must correspond to a combination of one plan and 0..n add-ons.
+% C3: All add-ons must be available for, at least, one plan
+
+constraint forall(i in ADDONS)(
+  sum(j in PLANS)(addons_available_for[i,j]) > 0
+);
+
+% C4: All the features included within the subscription must correspond to a combination of one plan and 0..n add-ons.
 
 constraint forall(a in ADDONS, f in FEATURES)(
  if selected_addons[a] = 1 then features_included_in_selected_addons[f] = addons_features[a,f] endif
@@ -82,9 +89,17 @@ constraint forall(u in USAGE_LIMITS)(
   subscription_usage_limits[u] = plans_usage_limits[selected_plan, u] + usage_limits_included_in_selected_ADDONS[u]
 );
 
+% C5: All selected add_ons must be available for the selected plan
+
+constraint forall(i in ADDONS)(
+  addons_available_for[i, selected_plan] == 1
+);
+
 % Calculus of the subscription cost
 
 constraint subscription_cost = plans_prices[selected_plan] + sum(a in ADDONS)(selected_addons[a] * addons_prices[a]);
+
+solve satisfy;
 
 output [
   "Selected plan = ", show(selected_plan), "\n",

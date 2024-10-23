@@ -48,6 +48,9 @@ plans:
 addOns:
   feature3Addon:
     description: ADDON description
+    availableFor:
+      - BASIC
+      - PRO
     price: 15.95
     unit: user/month
     features:

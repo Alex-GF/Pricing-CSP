@@ -36,3 +36,7 @@ addons_usage_limits_extensions = array2d(ADDONS, USAGE_LIMITS, [
     % feature3Addon
     0
 ]);
+addons_available_for = array2d(ADDONS, PLANS, [
+    % feature3Addon
+    1,1
+]);

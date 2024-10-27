@@ -99,8 +99,6 @@ constraint forall(i in ADDONS)(
 
 constraint subscription_cost = plans_prices[selected_plan] + sum(a in ADDONS)(selected_addons[a] * addons_prices[a]);
 
-solve satisfy;
-
 output [
   "Selected plan = ", show(selected_plan), "\n",
   "Selected addons = ", show(selected_addons), "\n",

@@ -1,0 +1,29 @@
+FEATURES = {feature1, feature2, feature3};
+USAGE_LIMITS = {limitOfFeature1};
+ADDONS = {basicAddon, feature3Addon};
+
+addons_prices = [10.99,15.95];
+
+addons_features = array2d(ADDONS, FEATURES, [
+    % basicAddon
+    1,1,0,
+    % feature3Addon
+    0,0,1
+]);
+addons_usage_limits = array2d(ADDONS, USAGE_LIMITS, [
+    % basicAddon
+    2,
+    % feature3Addon
+    0
+]);
+addons_usage_limits_extensions = array2d(ADDONS, USAGE_LIMITS, [
+    % basicAddon
+    0,
+    % feature3Addon
+    2
+]);
+
+linked_features = array2d(USAGE_LIMITS, FEATURES, [
+    % limitOfFeature1
+    1,0,0
+]);

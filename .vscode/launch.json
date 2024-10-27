@@ -24,6 +24,18 @@
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
       "outputCapture": "std" // Captura de la salida estándar
+    },
+    {
+      "type": "node", // Usar el depurador de Node.js en VSCode para Deno
+      "request": "launch",
+      "name": "Test pricing model without plans",
+      "runtimeExecutable": "minizinc",
+      "runtimeArgs": [
+        "model/PricingModelNoPlans.mzn",
+        "data/pricing_data_without_plans.dzn"
+      ],
+      "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
+      "outputCapture": "std" // Captura de la salida estándar
     }
   ]
 }

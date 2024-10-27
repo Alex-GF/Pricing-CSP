@@ -9,7 +9,6 @@ enum FEATURES;
 enum USAGE_LIMITS;
 
 array[PLANS] of float: plans_prices; % The position i indicates the price of a plan.
-% array[ADD_ONS] of float: addons_prices; % The position i indicates the price of an add-on.
 array[PLANS, FEATURES] of int: plans_features; % The position (i,j) indicates wether the plan i includes the feature j
 array[PLANS, USAGE_LIMITS] of int: plans_usage_limits; % The position (i,j) indicates the value of the usage limit j in the plan i.
 array[USAGE_LIMITS, FEATURES] of int: linked_features; % The position (i,j) indicates wether the usageLimit i is linked to the feature j
@@ -21,8 +20,6 @@ array[USAGE_LIMITS, FEATURES] of int: linked_features; % The position (i,j) indi
 array[FEATURES] of var 0..1: subscription_features;
 array[USAGE_LIMITS] of var 0..unlimited: subscription_usage_limits;
 var PLANS: selected_plan;
-% array[ADD_ONS] of var 0..1: selected_addons;
-% array[FEATURES] of var 0..1: features_included_in_selected_addons;
 var float: subscription_cost;
 
 % -----------------------
@@ -63,10 +60,13 @@ constraint forall(f in FEATURES, u in USAGE_LIMITS)(
   subscription_usage_limits[u] = plans_usage_limits[selected_plan, u]
 );
 
-%constraint forall(a in ADDONS, f in FEATURES)(
-%  if selected_addons[a] = 1 then %features_included_in_selected_addons[f] = 
-%)
-
 % Calculus of the subscription cost
 
-constraint subscription_cost = plans_prices[selected_plan]; % + sum(a in ADDONS)(selected_addons[a] * addons_prices[a])
+constraint subscription_cost = plans_prices[selected_plan];
+
+output [
+  "Selected plan = ", show(selected_plan), "\n",
+  "Features included in subscription = ", show(subscription_features), "\n",
+  "Usage Limits included in subscription = ", show(subscription_usage_limits), "\n",
+  "Subscription cost = ", show(subscription_cost)
+];

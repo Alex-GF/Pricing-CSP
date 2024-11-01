@@ -75,11 +75,7 @@ constraint forall(i in ADDONS)(
 % C4: All the features included within the subscription must correspond to a combination of one plan and 0..n add-ons.
 
 constraint forall(a in ADDONS, f in FEATURES)(
- if selected_addons[a] = 1 
-    then if features_included_in_selected_addons[f] = 0 
-        then features_included_in_selected_addons[f] = addons_features[a,f]
-    endif
- endif
+  features_included_in_selected_addons[f] = max(a in ADDONS)(selected_addons[a] * addons_features[a, f])
 );
 
 constraint forall(u in USAGE_LIMITS)(
@@ -113,7 +109,7 @@ constraint forall(i in ADDONS, j in ADDONS)(
 
 constraint subscription_cost = plans_prices[selected_plan] + sum(a in ADDONS)(selected_addons[a] * addons_prices[a]);
 
-solve maximize subscription_cost;
+solve satisfy;
 
 output [
   "Selected plan = ", show(selected_plan), "\n",

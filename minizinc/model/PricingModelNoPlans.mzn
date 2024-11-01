@@ -62,11 +62,7 @@ constraint sum(a in ADDONS)(selected_addons[a]) >= 1;
 % C4: All the features included within the subscription must correspond to a combination of 1..n add-ons.
 
 constraint forall(a in ADDONS, f in FEATURES)(
- if selected_addons[a] = 1 
-    then if subscription_features[f] = 0 
-        then subscription_features[f] = addons_features[a,f]
-    endif
- endif
+  subscription_features[f] = max(a in ADDONS)(selected_addons[a] * addons_features[a, f])
 );
 
 constraint forall(u in USAGE_LIMITS)(

@@ -1,4 +1,4 @@
-FEATURES = {feature1, feature2, feature3,feature4};
+FEATURES = {feature1, feature2, feature3, feature4};
 USAGE_LIMITS = {limitOfFeature1,limitOfFeature4};
 PLANS = {BASIC, PRO};
 ADDONS = {feature3Addon,feature4addon};
@@ -55,5 +55,5 @@ addons_depends_on = array2d(ADDONS, ADDONS, [
     % feature3Addon
     0,0,
     % feature4Addon
-    0,1
+    1,0
 ]);

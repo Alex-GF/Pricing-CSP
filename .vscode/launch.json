@@ -7,6 +7,8 @@
       "name": "Test pricing model without addons",
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [
+        "-a",
+        "-s",
         "model/PricingModelNoAddons.mzn",
         "data/pricing_data_without_addons.dzn"
       ],
@@ -19,6 +21,8 @@
       "name": "Test pricing model with addons",
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [
+        "-a",
+        "-s",
         "model/PricingModelWithAddons.mzn",
         "data/pricing_data_with_addons.dzn"
       ],
@@ -31,6 +35,8 @@
       "name": "Test pricing model without plans",
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [
+        "-a",
+        "-s",
         "model/PricingModelNoPlans.mzn",
         "data/pricing_data_without_plans.dzn"
       ],

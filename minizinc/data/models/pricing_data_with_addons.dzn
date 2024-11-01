@@ -3,7 +3,7 @@ USAGE_LIMITS = {limitOfFeature1,limitOfFeature4};
 PLANS = {BASIC, PRO};
 ADDONS = {feature3Addon,feature4addon};
 
-plans_prices = [0.0,5.0];
+plans_prices = [0.0,35.0];
 addons_prices = [15.95,20.95];
 
 plans_features = array2d(PLANS, FEATURES, [

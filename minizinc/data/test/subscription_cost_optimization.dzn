@@ -1,0 +1,11 @@
+requested_features = [
+    1, % feature1
+    0, % feature2
+    1, % feature3
+    0  % feature4
+];
+
+requested_usage_limits = [
+    4, % limitOfFeature1
+    0  % limitOfFeature4
+];

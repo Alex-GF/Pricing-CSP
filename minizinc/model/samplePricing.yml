@@ -19,6 +19,11 @@ features:
     valueType: BOOLEAN
     defaultValue: false
     type: DOMAIN
+  feature4:
+    description: Feature 3 description
+    valueType: BOOLEAN
+    defaultValue: false
+    type: DOMAIN
 usageLimits:
   limitOfFeature1:
     description: ''
@@ -27,7 +32,15 @@ usageLimits:
     unit: use/month
     type: RENEWABLE
     linkedFeatures:
-    - feature1
+      - feature1
+  limitOfFeature4:
+    description: ''
+    valueType: NUMERIC
+    defaultValue: 0
+    unit: use/month
+    type: RENEWABLE
+    linkedFeatures:
+      - feature4
 plans:
   BASIC:
     description: Basic plan

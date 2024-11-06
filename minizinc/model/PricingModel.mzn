@@ -41,7 +41,7 @@ array[ADDONS, ADDONS] of int: addons_depends_on; % The position (i,j) indicates 
 array[FEATURES] of var 0..1: subscription_features;
 array[USAGE_LIMITS] of var 0..unlimited: subscription_usage_limits;
 
-var PLANS: selected_plan;
+var int: selected_plan;
 
 array[ADDONS] of var 0..1: selected_addons;
 array[FEATURES] of var 0..1: features_included_in_selected_addons;
@@ -76,6 +76,12 @@ constraint
     then assert(forall(i in PLANS, j in USAGE_LIMITS)(
       plans_usage_limits[i,j] >= 0
     ), "Invalid datafile. All usage limits values must be positive")
+  endif;
+
+constraint
+  if num_plans > 0 
+    then selected_plan in PLANS
+    else selected_plan = 0
   endif;
 
 % Calculus of the subscription cost

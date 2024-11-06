@@ -1,29 +1,52 @@
-FEATURES = {feature1, feature2, feature3};
-USAGE_LIMITS = {limitOfFeature1};
-ADDONS = {basicAddon, feature3Addon};
+num_features = 4;
+num_usage_limits = 2;
+num_plans = 0;
+num_addons = 2;
 
-addons_prices = [10.99,15.95];
+features = ["feature1", "feature2", "feature3", "feature4"];
+usage_limits = ["limitOfFeature1", "limitOfFeature4"];
+plans = [];
+addons = ["feature3Addon", "feature4addon"];
 
-addons_features = array2d(ADDONS, FEATURES, [
-    % basicAddon
-    1,1,0,
-    % feature3Addon
-    0,0,1
+plans_prices = [];
+addons_prices = [15.95,20.95];
+
+plans_features = array2d(PLANS, FEATURES, [
 ]);
-addons_usage_limits = array2d(ADDONS, USAGE_LIMITS, [
-    % basicAddon
-    2,
-    % feature3Addon
-    0
-]);
-addons_usage_limits_extensions = array2d(ADDONS, USAGE_LIMITS, [
-    % basicAddon
-    0,
-    % feature3Addon
-    2
+plans_usage_limits = array2d(PLANS, USAGE_LIMITS, [
 ]);
 
 linked_features = array2d(USAGE_LIMITS, FEATURES, [
     % limitOfFeature1
-    1,0,0
+    1,0,0,0,
+    % limitOfFeature4
+    0,0,0,1
+]);
+
+addons_features = array2d(ADDONS, FEATURES, [
+    % feature3Addon
+    1,0,1,0,
+    % feature4Addon
+    0,1,0,1
+]);
+addons_usage_limits = array2d(ADDONS, USAGE_LIMITS, [
+    % feature3Addon
+    3,0,
+    % feature4Addon
+    0,3
+]);
+addons_usage_limits_extensions = array2d(ADDONS, USAGE_LIMITS, [
+    % feature3Addon
+    0,2,
+    % feature4Addon
+    2,0
+]);
+addons_available_for = array2d(ADDONS, PLANS, [
+]);
+
+addons_depends_on = array2d(ADDONS, ADDONS, [
+    % feature3Addon
+    0,0,
+    % feature4Addon
+    0,0
 ]);

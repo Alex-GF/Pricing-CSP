@@ -18,6 +18,34 @@
     {
       "type": "node", // Usar el depurador de Node.js en VSCode para Deno
       "request": "launch",
+      "name": "Model 1.0: Test Valid Subscription Operation NO PLANS",
+      "runtimeExecutable": "minizinc",
+      "runtimeArgs": [
+        "-a",
+        "-s",
+        "operations/validation/valid_subscription.mzn",
+        "data/models/pricing_data_without_plans.dzn"
+      ],
+      "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
+      "outputCapture": "std" // Captura de la salida estándar
+    },
+    {
+      "type": "node", // Usar el depurador de Node.js en VSCode para Deno
+      "request": "launch",
+      "name": "Model 1.0: Test Valid Subscription Operation NO ADDONS",
+      "runtimeExecutable": "minizinc",
+      "runtimeArgs": [
+        "-a",
+        "-s",
+        "operations/validation/valid_subscription.mzn",
+        "data/models/pricing_data_without_addons.dzn"
+      ],
+      "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
+      "outputCapture": "std" // Captura de la salida estándar
+    },
+    {
+      "type": "node", // Usar el depurador de Node.js en VSCode para Deno
+      "request": "launch",
       "name": "Model 1.0: Test Valid Subscription Operation",
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [

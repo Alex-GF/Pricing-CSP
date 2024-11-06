@@ -1,6 +1,6 @@
 include "./valid_pricing.mzn";
 
-% C4: All the features included within the subscription must correspond to a combination of one plan and 0..n add-ons.
+% C4: All the features included within the subscription must correspond to a combination of one plan and 0..n add-ons or zero plans and 1..n add-ons.
 
 constraint forall(f in FEATURES)(
       if num_addons > 0 
@@ -42,7 +42,9 @@ constraint
 constraint
   if num_addons > 0 /\ num_plans > 0 
     then forall(i in ADDONS)(
-      addons_available_for[i, selected_plan] == 1
+      if selected_addons[i] == 1 
+        then addons_available_for[i, selected_plan] == 1 
+      endif
     )
   endif;
 

@@ -81,7 +81,7 @@
         "-a",
         "-s",
         "operations/analysis/configuration_space.mzn",
-        "data/models/pricing_data_without_addons.dzn"
+        "data/models/2024/clockify.dzn"
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
       "outputCapture": "std" // Captura de la salida estándar
@@ -94,8 +94,8 @@
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [
         "operations/optimization/subscription_cost.mzn",
-        "data/models/pricing_data_with_addons.dzn",
-        "data/test/subscription_cost_optimization.dzn"
+        "data/models/2024/clockify.dzn",
+        "data/test/clockify_subscription_cost_optimization.dzn"
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
       "outputCapture": "std" // Captura de la salida estándar

@@ -47,13 +47,13 @@ addons_usage_limits_extensions = array2d(ADDONS, USAGE_LIMITS, [
 ]);
 addons_available_for = array2d(ADDONS, PLANS, [
     % kioskBasic
-    0,1,0,0,0,1,
+    0,1,0,0,0,0,
     % kioskStandard
-    0,0,1,0,0,1,
+    0,0,1,0,0,0,
     % kioskPro
-    0,0,0,1,0,1,
+    0,0,0,1,0,0,
     % kioskEnterprise
-    0,0,0,0,1,1,
+    0,0,0,0,1,0,
 ]);
 
 addons_depends_on = array2d(ADDONS, ADDONS, [

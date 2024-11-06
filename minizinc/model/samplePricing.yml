@@ -20,7 +20,7 @@ features:
     defaultValue: false
     type: DOMAIN
   feature4:
-    description: Feature 3 description
+    description: Feature 4 description
     valueType: BOOLEAN
     defaultValue: false
     type: DOMAIN
@@ -50,7 +50,7 @@ plans:
     usageLimits: null
   PRO:
     description: Advanced plan
-    price: 5.0
+    price: 35.0
     unit: user/month
     features:
       feature2:
@@ -69,3 +69,21 @@ addOns:
     features:
       feature3:
         value: true
+  feature4Addon:
+    description: ADDON description
+    availableFor:
+      - BASIC
+      - PRO
+    dependsOn:
+      - feature3Addon
+    price: 20.95
+    unit: user/month
+    features:
+      feature4:
+        value: true
+    usageLimits:
+      limitOfFeature4:
+        value: 3
+    usageLimitsExtensions:
+      limitOfFeature1:
+        value: 2

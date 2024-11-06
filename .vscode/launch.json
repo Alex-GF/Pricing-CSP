@@ -66,7 +66,7 @@
         "-a",
         "-s",
         "operations/validation/valid_subscription.mzn",
-        "data/models/pricing_data_with_addons.dzn"
+        "data/models/2024/clockify.dzn"
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
       "outputCapture": "std" // Captura de la salida estándar

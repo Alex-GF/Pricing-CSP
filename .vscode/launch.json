@@ -1,49 +1,6 @@
 {
   "version": "0.2.0",
   "configurations": [
-    // Model 1.0
-    {
-      "type": "node", // Usar el depurador de Node.js en VSCode para Deno
-      "request": "launch",
-      "name": "Model 1.0: Test pricing model without addons",
-      "runtimeExecutable": "minizinc",
-      "runtimeArgs": [
-        "-a",
-        "-s",
-        "model/PricingModelNoAddons.mzn",
-        "data/models/pricing_data_without_addons.dzn"
-      ],
-      "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
-      "outputCapture": "std" // Captura de la salida estándar
-    },
-    {
-      "type": "node", // Usar el depurador de Node.js en VSCode para Deno
-      "request": "launch",
-      "name": "Model 1.0: Test pricing model with addons",
-      "runtimeExecutable": "minizinc",
-      "runtimeArgs": [
-        "-a",
-        "-s",
-        "model/PricingModelWithAddons.mzn",
-        "data/models/pricing_data_with_addons.dzn"
-      ],
-      "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
-      "outputCapture": "std" // Captura de la salida estándar
-    },
-    {
-      "type": "node", // Usar el depurador de Node.js en VSCode para Deno
-      "request": "launch",
-      "name": "Model 1.0: Test pricing model without plans",
-      "runtimeExecutable": "minizinc",
-      "runtimeArgs": [
-        "-a",
-        "-s",
-        "model/PricingModelNoPlans.mzn",
-        "data/models/pricing_data_without_plans.dzn"
-      ],
-      "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
-      "outputCapture": "std" // Captura de la salida estándar
-    },
     // Valid Pricing Operation
     {
       "type": "node", // Usar el depurador de Node.js en VSCode para Deno
@@ -82,7 +39,7 @@
         "-a",
         "-s",
         "operations/analysis/configuration_space.mzn",
-        "data/models/pricing_data_with_addons.dzn"
+        "data/models/pricing_data_without_addons.dzn"
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
       "outputCapture": "std" // Captura de la salida estándar

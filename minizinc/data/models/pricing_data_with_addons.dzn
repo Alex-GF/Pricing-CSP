@@ -1,7 +1,12 @@
-FEATURES = {feature1, feature2, feature3, feature4};
-USAGE_LIMITS = {limitOfFeature1,limitOfFeature4};
-PLANS = {BASIC, PRO};
-ADDONS = {feature3Addon,feature4addon};
+num_features = 4;
+num_usage_limits = 2;
+num_plans = 2;
+num_addons = 2;
+
+features = ["feature1", "feature2", "feature3", "feature4"];
+usage_limits = ["limitOfFeature1", "limitOfFeature4"];
+plans = ["BASIC", "PRO"];
+addons = ["feature3Addon", "feature4addon"];
 
 plans_prices = [0.0,35.0];
 addons_prices = [15.95,20.95];

@@ -4,10 +4,21 @@
 
 int: unlimited = 1000000000;
 
-enum PLANS;
-enum FEATURES;
-enum USAGE_LIMITS;
-enum ADDONS;
+int: num_features;
+int: num_usage_limits;
+int: num_plans;
+int: num_addons;
+
+array[1..num_features] of string: features;
+array[1..num_usage_limits] of string: usage_limits;
+array[1..num_plans] of string: plans;
+array[1..num_addons] of string: addons;
+
+set of int: FEATURES = index_set(features);
+set of int: USAGE_LIMITS = index_set(usage_limits);
+set of int: PLANS = index_set(plans);
+set of int: ADDONS = index_set(addons);
+
 
 array[PLANS] of float: plans_prices; % The position i indicates the price of a plan.
 array[ADDONS] of float: addons_prices; % The position i indicates the price of an add-on.
@@ -46,18 +57,27 @@ var float: subscription_cost;
 
 % C1: plans_features and linked_features values must be 0 or 1. plans_usage_limits values must be positive
 
-constraint assert(forall(i in PLANS, j in FEATURES)(
-  plans_features[i,j] in {0, 1}
-), "Invalid datafile. All plans_features values must be 0 or 1, indicating whether a feature j is included in the plan i or not");
+constraint
+  if num_plans > 0 
+    then assert(forall(i in PLANS, j in FEATURES)(
+      plans_features[i,j] in {0, 1}
+    ), "Invalid datafile. All plans_features values must be 0 or 1, indicating whether a feature j is included in the plan i or not")
+  endif;
 
-constraint assert(forall(i in USAGE_LIMITS, j in FEATURES)(
-  linked_features[i,j] in {0, 1}
-), "Invalid datafile. All linked_features values must be 0 or 1, indicating whether a feature j is linked to an usage_limit i or not");
+constraint 
+  if num_usage_limits > 0 
+    then assert(forall(i in USAGE_LIMITS, j in FEATURES)(
+      linked_features[i,j] in {0, 1}
+    ), "Invalid datafile. All linked_features values must be 0 or 1, indicating whether a feature j is linked to an usage_limit i or not")
+  endif;
 
-constraint assert(forall(i in PLANS, j in USAGE_LIMITS)(
-  plans_usage_limits[i,j] >= 0
-), "Invalid datafile. All usage limits values must be positive");
+constraint 
+  if num_plans > 0 /\ num_usage_limits > 0 
+    then assert(forall(i in PLANS, j in USAGE_LIMITS)(
+      plans_usage_limits[i,j] >= 0
+    ), "Invalid datafile. All usage limits values must be positive")
+  endif;
 
 % Calculus of the subscription cost
 
-constraint subscription_cost = plans_prices[selected_plan] + sum(a in ADDONS)(selected_addons[a] * addons_prices[a]);
+constraint subscription_cost = if num_plans > 0 then plans_prices[selected_plan] else 0 endif + if num_addons > 0 then sum(a in ADDONS)(selected_addons[a] * addons_prices[a]) else 0 endif;

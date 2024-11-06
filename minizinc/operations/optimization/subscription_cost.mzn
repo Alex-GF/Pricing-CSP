@@ -21,9 +21,12 @@ constraint forall(i in FEATURES)(
   subscription_features[i] >= requested_features[i]
 );
 
-constraint forall(i in USAGE_LIMITS)(
-  subscription_usage_limits[i] >= requested_usage_limits[i]
-);
+constraint 
+  if num_usage_limits > 0
+    then forall(i in USAGE_LIMITS)(
+      subscription_usage_limits[i] >= requested_usage_limits[i]
+    )
+  endif;
 
 % Solve
 solve minimize subscription_cost;

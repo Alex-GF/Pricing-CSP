@@ -1,0 +1,47 @@
+{
+  "FEATURES": ["feature1", "feature2", "feature3", "feature4"],
+  "USAGE_LIMITS": ["limitOfFeature1", "limitOfFeature4"],
+  "PLANS": ["BASIC", "PRO"],
+  "ADDONS": ["feature3Addon", "feature4Addon"],
+  
+  "usage_limits": [
+    {
+      "linked_features": [1, 0, 0, 0]
+    },
+    {
+      "linked_features": [0, 0, 0, 1]
+    }
+  ],
+
+  "plans": [
+    {
+      "price": 0.0,
+      "features": [1, 0, 0, 0],
+      "usage_limits": [2, 0]
+    },
+    {
+      "price": 35.0,
+      "features": [1, 1, 0, 0],
+      "usage_limits": [5, 0]
+    }
+  ],
+
+  "addons": [
+    {
+      "price": 15.95,
+      "available_for": [1, 1],
+      "depends_on": [0, 0],
+      "features": [0, 0, 1, 0],
+      "usage_limits": [0, 0],
+      "usage_limits_extensions": [0, 0]
+    },
+    {
+      "price": 20.95,
+      "available_for": [1, 1],
+      "depends_on": [1, 0],
+      "features": [0, 0, 0, 1],
+      "usage_limits": [0, 3],
+      "usage_limits_extensions": [2, 0]
+    }
+  ]
+}

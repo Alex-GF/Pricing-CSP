@@ -1,11 +1,11 @@
 {
   "version": "0.2.0",
   "configurations": [
-    // Model Runs
+    // Model 1.0
     {
       "type": "node", // Usar el depurador de Node.js en VSCode para Deno
       "request": "launch",
-      "name": "Test pricing model without addons",
+      "name": "Model 1.0: Test pricing model without addons",
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [
         "-a",
@@ -19,7 +19,7 @@
     {
       "type": "node", // Usar el depurador de Node.js en VSCode para Deno
       "request": "launch",
-      "name": "Test pricing model with addons",
+      "name": "Model 1.0: Test pricing model with addons",
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [
         "-a",
@@ -33,7 +33,7 @@
     {
       "type": "node", // Usar el depurador de Node.js en VSCode para Deno
       "request": "launch",
-      "name": "Test pricing model without plans",
+      "name": "Model 1.0: Test pricing model without plans",
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [
         "-a",
@@ -48,7 +48,7 @@
     {
       "type": "node", // Usar el depurador de Node.js en VSCode para Deno
       "request": "launch",
-      "name": "Test Valid Pricing Operation",
+      "name": "Model 1.0: Test Valid Pricing Operation",
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [
         "operations/validation/valid_pricing.mzn",
@@ -61,7 +61,7 @@
     {
       "type": "node", // Usar el depurador de Node.js en VSCode para Deno
       "request": "launch",
-      "name": "Test Valid Subscription Operation",
+      "name": "Model 1.0: Test Valid Subscription Operation",
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [
         "-a",
@@ -76,7 +76,7 @@
     {
       "type": "node", // Usar el depurador de Node.js en VSCode para Deno
       "request": "launch",
-      "name": "Test Configuration Space Size Calculus",
+      "name": "Model 1.0: Test Configuration Space Size Calculus",
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [
         "-a",
@@ -91,7 +91,7 @@
     {
       "type": "node", // Usar el depurador de Node.js en VSCode para Deno
       "request": "launch",
-      "name": "Test Subscription Cost Optimization Operation",
+      "name": "Model 1.0: Test Subscription Cost Optimization Operation",
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [
         "operations/optimization/subscription_cost.mzn",
@@ -99,6 +99,18 @@
         "data/test/subscription_cost_optimization.dzn"
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
+      "outputCapture": "std" // Captura de la salida estándar
+    },
+    {
+      "type": "node", // Usar el depurador de Node.js en VSCode para Deno
+      "request": "launch",
+      "name": "Model 2.0: Test pricing model with addons",
+      "runtimeExecutable": "minizinc",
+      "runtimeArgs": [
+        "model/PricingModelWithAddons-test.mzn",
+        "data/models/pricing_data_with_addons-test.json"
+      ],
+      "cwd": "${workspaceFolder}/minizinc-records", // Asegúrate de que sea el directorio raíz del proyecto
       "outputCapture": "std" // Captura de la salida estándar
     },
   ]

@@ -1,4 +1,4 @@
-include "../validation/valid_subscription.mzn";
+include "../validation/valid-subscription.mzn";
 
 % ----------------------
 % ----- INPUT DATA -----
@@ -27,14 +27,3 @@ constraint
       subscription_usage_limits[i] >= requested_usage_limits[i]
     )
   endif;
-
-% Solve
-solve minimize subscription_cost;
-
-output [
-  "Selected plan = ", show(selected_plan), "\n",
-  "Selected addons = ", show(selected_addons), "\n",
-  "Features included in subscription = ", show(subscription_features), "\n",
-  "Usage Limits included in subscription = ", show(subscription_usage_limits), "\n",
-  "Subscription cost = ", show(subscription_cost)
-];

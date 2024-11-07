@@ -1,0 +1,80 @@
+num_features = 11;
+num_usage_limits = 3;
+num_plans = 3;
+num_addons = 3;
+
+features = ["meetings", "cloudRecordings", "automatedSubtitles", "reports", "votingInMeetings", "phoneDialing", "ltiIntegration", "administratorPortal", "end2EndExcryption", "chatSupport", "translatedCaptions"];
+usage_limits = ["maxAssistantsPerMeeting", "maxTimePerMeeting", "recordingsCloudStorage"];
+plans = ["BASIC", "PRO", "BUSINESS"];
+addons = ["hugeMeetings", "translatedCaptions", "phoneDialing"];
+
+plans_prices = [0.0, 15.99, 21.99];
+addons_prices = [50.0, 5.0, 100.0];
+
+plans_features = array2d(PLANS, FEATURES, [
+    % BASIC
+    1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0,
+    % PRO
+    1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0,
+    % BUSINESS
+    1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0
+]);
+plans_usage_limits = array2d(PLANS, USAGE_LIMITS, [
+    % BASIC
+    100, 40, 0,
+    % PRO
+    100, 1800, 5,
+    % BUSINESS
+    300, 1800, 5
+]);
+
+linked_features = array2d(USAGE_LIMITS, FEATURES, [
+    % maxAssistantsPerMeeting
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    % maxTimePerMeeting
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    % recordingsCloudStorage
+    0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
+]);
+
+addons_features = array2d(ADDONS, FEATURES, [
+    % hugeMeetings
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    % translatedCaptions
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    % phoneDialing
+    0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0
+]);
+addons_usage_limits = array2d(ADDONS, USAGE_LIMITS, [
+    % hugeMeetings
+    1000, 0, 0,
+    % translatedCaptions
+    0, 0, 0,
+    % phoneDialing
+    0, 0, 0
+]);
+addons_usage_limits_extensions = array2d(ADDONS, USAGE_LIMITS, [
+    % hugeMeetings
+    0, 0, 0,
+    % translatedCaptions
+    0, 0, 0,
+    % phoneDialing
+    0, 0, 0
+]);
+addons_available_for = array2d(ADDONS, PLANS, [
+    % hugeMeetings
+    1, 1, 1,
+    % translatedCaptions
+    1, 1, 1,
+    % phoneDialing
+    0, 1, 1
+]);
+
+addons_depends_on = array2d(ADDONS, ADDONS, [
+    % hugeMeetings
+    0, 0, 0,
+    % translatedCaptions
+    0, 0, 0,
+    % phoneDialing
+    0, 0, 0
+]);

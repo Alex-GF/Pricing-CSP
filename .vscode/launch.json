@@ -8,7 +8,7 @@
       "name": "Model 1.0: Test Valid Pricing Operation",
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [
-        "operations/validation/valid_pricing.mzn",
+        "operations/validation/valid-pricing.mzn",
         "data/models/pricing_data_with_addons.dzn"
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
@@ -23,7 +23,7 @@
       "runtimeArgs": [
         "-a",
         "-s",
-        "operations/validation/valid_subscription.mzn",
+        "operations/validation/valid-subscription.mzn",
         "data/models/pricing_data_without_usage_limits.dzn"
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
@@ -37,7 +37,7 @@
       "runtimeArgs": [
         "-a",
         "-s",
-        "operations/validation/valid_subscription.mzn",
+        "operations/validation/valid-subscription.mzn",
         "data/models/pricing_data_without_plans.dzn"
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
@@ -51,7 +51,7 @@
       "runtimeArgs": [
         "-a",
         "-s",
-        "operations/validation/valid_subscription.mzn",
+        "operations/validation/valid-subscription.mzn",
         "data/models/pricing_data_without_addons.dzn"
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
@@ -65,7 +65,7 @@
       "runtimeArgs": [
         "-a",
         "-s",
-        "operations/validation/valid_subscription.mzn",
+        "operations/validation/valid-subscription.mzn",
         "data/models/2024/clockify.dzn"
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
@@ -81,7 +81,22 @@
         "-a",
         "-s",
         "operations/analysis/configuration_space.mzn",
-        "data/models/2024/clockify.dzn"
+        "data/models/zoom-excerpt.dzn"
+      ],
+      "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
+      "outputCapture": "std" // Captura de la salida estándar
+    },
+    {
+      "type": "node", // Usar el depurador de Node.js en VSCode para Deno
+      "request": "launch",
+      "name": "Model 1.0: Test Configuration Space Size Calculus Filtered",
+      "runtimeExecutable": "minizinc",
+      "runtimeArgs": [
+        "-a",
+        "-s",
+        "operations/filter/filtered-configuration-space.mzn",
+        "data/models/2024/zoom-excerpt.dzn",
+        "data/test/zoom_subscription_cost_optimization.dzn"
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
       "outputCapture": "std" // Captura de la salida estándar
@@ -93,9 +108,22 @@
       "name": "Model 1.0: Test Subscription Cost Optimization Operation",
       "runtimeExecutable": "minizinc",
       "runtimeArgs": [
-        "operations/optimization/subscription_cost.mzn",
-        "data/models/2024/clockify.dzn",
-        "data/test/clockify_subscription_cost_optimization.dzn"
+        "operations/analysis/cheapest-subscription.mzn",
+        "data/models/2024/zoom-excerpt.dzn",
+        "data/test/zoom_subscription_cost_optimization.dzn"
+      ],
+      "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
+      "outputCapture": "std" // Captura de la salida estándar
+    },
+    {
+      "type": "node", // Usar el depurador de Node.js en VSCode para Deno
+      "request": "launch",
+      "name": "Model 1.0: Test Filtered Subscription Cost Optimization Operation",
+      "runtimeExecutable": "minizinc",
+      "runtimeArgs": [
+        "operations/filter/cheapest-filtered-subscription.mzn",
+        "data/models/2024/zoom-excerpt.dzn",
+        "data/test/zoom_subscription_cost_optimization.dzn"
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
       "outputCapture": "std" // Captura de la salida estándar

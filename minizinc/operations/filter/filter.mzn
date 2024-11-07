@@ -4,6 +4,8 @@ include "../validation/valid-subscription.mzn";
 % ----- INPUT DATA -----
 % ----------------------
 
+float: min_price;
+float: max_price;
 array[FEATURES] of int: requested_features; % The position i indicates wether the feature i must be in the subscription.
 array[USAGE_LIMITS] of int: requested_usage_limits; % The position i indicates wether the usage limit i must be in the subscription.
 
@@ -27,3 +29,8 @@ constraint
       subscription_usage_limits[i] >= requested_usage_limits[i]
     )
   endif;
+
+% The price of the subscription cannot exceed maxPricing, and must surpass min_price
+
+constraint subscription_cost >= min_price;
+constraint subscription_cost <= max_price;

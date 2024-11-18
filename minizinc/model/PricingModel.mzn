@@ -24,13 +24,13 @@ array[PLANS] of float: plans_prices; % The position i indicates the price of a p
 array[ADDONS] of float: addons_prices; % The position i indicates the price of an add-on.
 
 array[PLANS, FEATURES] of int: plans_features; % The position (i,j) indicates wether the plan i includes the feature j
-array[PLANS, USAGE_LIMITS] of int: plans_usage_limits; % The position (i,j) indicates the value of the usage limit j in the plan i.
+array[PLANS, USAGE_LIMITS] of float: plans_usage_limits; % The position (i,j) indicates the value of the usage limit j in the plan i.
 
 array[USAGE_LIMITS, FEATURES] of int: linked_features; % The position (i,j) indicates wether the usageLimit i is linked to the feature j
 
 array[ADDONS, FEATURES] of int: addons_features; % The position (i,j) indicates wether the add-on i includes the feature j
-array[ADDONS, USAGE_LIMITS] of int: addons_usage_limits; % The position (i,j) indicates the value of the usage limit j in the add-on i.
-array[ADDONS, USAGE_LIMITS] of int: addons_usage_limits_extensions; % The position (i,j) indicates the extension of the limit imposed by the usage limit j in the subscription when contracting the add-on i.
+array[ADDONS, USAGE_LIMITS] of float: addons_usage_limits; % The position (i,j) indicates the value of the usage limit j in the add-on i.
+array[ADDONS, USAGE_LIMITS] of float: addons_usage_limits_extensions; % The position (i,j) indicates the extension of the limit imposed by the usage limit j in the subscription when contracting the add-on i.
 array[ADDONS, PLANS] of int: addons_available_for; % The position (i,j) indicates whether the add-on i is available for the plan j
 array[ADDONS, ADDONS] of int: addons_depends_on; % The position (i,j) indicates whether the add-on i depends on the addon j, which means they have to be in the same subscription
 

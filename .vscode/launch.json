@@ -81,7 +81,7 @@
         "-a",
         "-s",
         "operations/analysis/configuration_space.mzn",
-        "data/models/2024/clockify.dzn"
+        "data/models/2024/microsoft365business.dzn"
       ],
       "cwd": "${workspaceFolder}/minizinc", // Asegúrate de que sea el directorio raíz del proyecto
       "outputCapture": "std" // Captura de la salida estándar

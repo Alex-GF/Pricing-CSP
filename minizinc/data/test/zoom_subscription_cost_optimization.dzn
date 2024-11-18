@@ -1,0 +1,10 @@
+min_price = 0;
+max_price = 30;
+
+requested_features = [
+    0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+];
+
+requested_usage_limits = [
+    200, 0, 0,
+];
